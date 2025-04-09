@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Auth Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding-top: 80px; }
+    .form-container { max-width: 400px; margin: auto; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .toggle-link { display: block; margin-top: 15px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container text-center">
+    <h1>Welcome</h1>
+    <button class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+    <button class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="loginForm" onsubmit="return validateLogin()">
+            <input type="email" id="loginEmail" class="form-control mb-2" placeholder="Email" required>
+            <input type="password" id="loginPassword" class="form-control mb-2" placeholder="Password" required>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <a href="#" class="toggle-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">Don't have an account? Register</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Register</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="registerForm" onsubmit="return validateRegister()">
+            <input type="text" id="fullname" class="form-control mb-2" placeholder="Full Name" required>
+            <input type="text" id="contact" class="form-control mb-2" placeholder="Contact Number" required>
+            <input type="date" id="dob" class="form-control mb-2" required>
+            <input type="email" id="email" class="form-control mb-2" placeholder="Email ID" required>
+            <input type="password" id="password" class="form-control mb-2" placeholder="Password" required>
+            <select id="gender" class="form-control mb-2" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <button type="submit" class="btn btn-success w-100">Register</button>
+            <a href="#" class="toggle-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Already have an account? Login</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function validateRegister() {
+      const contact = document.getElementById('contact').value;
+      if (!/^\d{10}$/.test(contact)) {
+        alert('Contact number must be 10 digits.');
+        return false;
+      }
+      alert('Registered Successfully!');
+      return false; // prevent actual submission for demo
+    }
+
+    function validateLogin() {
+      alert('Logged in Successfully!');
+      return false; // prevent actual submission for demo
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
